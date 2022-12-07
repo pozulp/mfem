@@ -465,6 +465,10 @@ public:
    virtual void SetPadDigits(int digits) override
    { pad_digits_cycle=digits; pad_digits_rank=6; }
 
+   /// Deprecated: see @a SetMaxLevelsOfDetail.
+   MFEM_DEPRECATED
+   void SetLevelsOfDetail(int levels_of_detail);
+
    /// Set VisIt parameter: maximum levels of detail for the MultiresControl
    void SetMaxLevelsOfDetail(int max_levels_of_detail);
 
