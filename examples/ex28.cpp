@@ -222,7 +222,6 @@ int main(int argc, char *argv[])
    if (visit)
    {
       VisItDataCollection visit_dc("ex28", mesh);
-      visit_dc.SetLevelsOfDetail(4);
       visit_dc.RegisterField("displacement", &x);
       visit_dc.Save();
    }

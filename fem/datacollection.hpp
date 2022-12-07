@@ -410,7 +410,6 @@ protected:
    // Additional data needed in the VisIt root file, which describes the mesh
    // and all the fields in the collection
    int spatial_dim, topo_dim;
-   int visit_levels_of_detail;
    int visit_max_levels_of_detail;
    std::map<std::string, VisItFieldInfo> field_info_map;
    typedef std::map<std::string, VisItFieldInfo>::iterator FieldInfoMapIterator;
@@ -465,9 +464,6 @@ public:
    /// by calling SetPadDigitsCycle() and SetPadDigitsRank() instead.
    virtual void SetPadDigits(int digits) override
    { pad_digits_cycle=digits; pad_digits_rank=6; }
-
-   /// Set VisIt parameter: default levels of detail for the MultiresControl
-   void SetLevelsOfDetail(int levels_of_detail);
 
    /// Set VisIt parameter: maximum levels of detail for the MultiresControl
    void SetMaxLevelsOfDetail(int max_levels_of_detail);

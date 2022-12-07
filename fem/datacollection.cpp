@@ -349,11 +349,6 @@ void VisItDataCollection::UpdateMeshInfo()
    {
       spatial_dim = mesh->SpaceDimension();
       topo_dim = mesh->Dimension();
-      if (mesh->NURBSext)
-      {
-         visit_levels_of_detail =
-            std::max(visit_levels_of_detail, mesh->NURBSext->GetOrder());
-      }
    }
    else
    {
@@ -369,7 +364,6 @@ VisItDataCollection::VisItDataCollection(const std::string& collection_name,
    appendRankToFileName = true; // always include rank in file names
    cycle = 0;                   // always include cycle in directory names
 
-   visit_levels_of_detail = 1;
    visit_max_levels_of_detail = 32;
 
    UpdateMeshInfo();
@@ -387,7 +381,6 @@ VisItDataCollection::VisItDataCollection(MPI_Comm comm,
    appendRankToFileName = true; // always include rank in file names
    cycle = 0;                   // always include cycle in directory names
 
-   visit_levels_of_detail = 1;
    visit_max_levels_of_detail = 32;
 
    UpdateMeshInfo();
@@ -430,7 +423,6 @@ void VisItDataCollection::RegisterField(const std::string& name,
 
    DataCollection::RegisterField(name, gf);
    field_info_map[name] = VisItFieldInfo("nodes", gf->VectorDim(), LOD);
-   visit_levels_of_detail = std::max(visit_levels_of_detail, LOD);
 }
 
 void VisItDataCollection::RegisterQField(const std::string& name,
@@ -449,12 +441,6 @@ void VisItDataCollection::RegisterQField(const std::string& name,
 
    DataCollection::RegisterQField(name, qf);
    field_info_map[name] = VisItFieldInfo("elements", 1, LOD);
-   visit_levels_of_detail = std::max(visit_levels_of_detail, LOD);
-}
-
-void VisItDataCollection::SetLevelsOfDetail(int levels_of_detail)
-{
-   visit_levels_of_detail = levels_of_detail;
 }
 
 void VisItDataCollection::SetMaxLevelsOfDetail(int max_levels_of_detail)
